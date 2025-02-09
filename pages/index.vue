@@ -350,6 +350,7 @@
 <script setup lang="ts">
 import anime from 'animejs'
 import { onMounted, ref, reactive } from 'vue'
+import { useRuntimeConfig } from 'nuxt/app'
 
 // Service Cards Data: Defines the content for each service card
 const services = [
@@ -444,6 +445,7 @@ const form = reactive({
 
 const isSubmitting = ref(false)
 const submitStatus = ref(null)
+const config = useRuntimeConfig()
 
 // Form Submission Handler
 async function submitForm () {
@@ -451,7 +453,8 @@ async function submitForm () {
   submitStatus.value = null
 
   try {
-    const response = await fetch('http://n8n.codelumus.com/webhook/quote-form', {
+    console.log('Submitting to:', config.public.apiBase)
+    const response = await fetch(config.public.apiBase, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -459,24 +462,17 @@ async function submitForm () {
       body: JSON.stringify(form)
     })
 
-    let responseData
-    try {
-      responseData = await response.text()
-      responseData = responseData ? JSON.parse(responseData) : null
-      console.log('Response data:', responseData)
-    } catch (e) {
-      console.error('Error parsing response:', e)
-    }
+    console.log('Response status:', response.status)
+    const responseText = await response.text()
+    console.log('Response text:', responseText)
 
     if (!response.ok) {
-      console.error('Response status:', response.status)
-      console.error('Response data:', responseData)
-      throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`)
+      throw new Error(`Network response was not ok: ${response.status} ${responseText}`)
     }
 
     submitStatus.value = {
       type: 'success',
-      message: responseData?.message || 'Thank you! We will contact you soon with your free quote.'
+      message: 'Thank you for your interest! Our team will review your request and contact you within 24 hours to proceed with scheduling your project.'
     }
 
     // Reset form
@@ -487,7 +483,7 @@ async function submitForm () {
     console.error('Form submission error:', error)
     submitStatus.value = {
       type: 'error',
-      message: 'Sorry, there was an error submitting your request. Please try again later.'
+      message: 'We apologize, but we could not process your request at this time. Please try again later or contact us directly.'
     }
   } finally {
     isSubmitting.value = false
