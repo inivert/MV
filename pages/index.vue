@@ -453,23 +453,25 @@ async function submitForm () {
   submitStatus.value = null
 
   try {
-    console.log('Submitting to:', config.public.apiBase)
     const response = await fetch(config.public.apiBase, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json'
       },
-      body: JSON.stringify(form),
-      mode: 'cors'
+      body: JSON.stringify(form)
     })
 
-    console.log('Response status:', response.status)
-    const responseText = await response.text()
-    console.log('Response text:', responseText)
+    const result = await response.json()
 
     if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status} ${responseText}`)
+      if (response.status === 429) {
+        throw new Error('Too many requests. Please try again later.')
+      }
+      if (response.status === 400 && result.details) {
+        throw new Error(result.details.join('\n'))
+      }
+      throw new Error(result.error || 'Failed to submit form')
     }
 
     submitStatus.value = {
@@ -485,7 +487,7 @@ async function submitForm () {
     console.error('Form submission error:', error)
     submitStatus.value = {
       type: 'error',
-      message: 'We apologize, but we could not process your request at this time. Please try again later or contact us directly.'
+      message: error.message || 'We apologize, but we could not process your request at this time. Please try again later or contact us directly.'
     }
   } finally {
     isSubmitting.value = false
