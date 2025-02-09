@@ -92,8 +92,11 @@ export default defineNuxtConfig({
 
   // Runtime Configuration
   runtimeConfig: {
+    // Private runtime config
+    webhookUrl: process.env.WEBHOOK_URL,
+    // Public runtime config
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://n8n.codelumus.com/webhook/quote-form',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api/quote',
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://mv-bay.vercel.app/',
       siteName: process.env.NUXT_PUBLIC_SITE_NAME || 'MV Landscaping'
     }
@@ -102,8 +105,8 @@ export default defineNuxtConfig({
   // Development Proxy Configuration
   nitro: {
     devProxy: {
-      '/api/webhook/quote-form': {
-        target: 'https://n8n.codelumus.com/webhook/quote-form',
+      '/api/quote': {
+        target: process.env.WEBHOOK_URL || 'http://localhost:3000',
         changeOrigin: true,
         secure: false
       }

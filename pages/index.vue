@@ -457,9 +457,11 @@ async function submitForm () {
     const response = await fetch(config.public.apiBase, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
-      body: JSON.stringify(form)
+      body: JSON.stringify(form),
+      mode: 'cors'
     })
 
     console.log('Response status:', response.status)
