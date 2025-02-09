@@ -1,0 +1,52 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:vue/vue3-recommended",
+    "plugin:nuxt/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_",
+      "ignoreRestSiblings": true
+    }],
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "no-undef": "off",
+    "no-console": "off",
+    "no-redeclare": "off",
+    "no-useless-escape": "off",
+    "no-fallthrough": "off",
+    "no-constant-condition": "off",
+    "no-self-assign": "off",
+    "no-empty": "off",
+    "no-dupe-else-if": "off",
+    "no-unused-vars": "off"
+  },
+  "ignorePatterns": [
+    ".nuxt/**/*",
+    "dist/**/*",
+    "node_modules/**/*",
+    ".output/**/*",
+    "*.d.ts",
+    "components.d.ts",
+    "auto-imports.d.ts"
+  ]
+} 
