@@ -30,7 +30,11 @@ export default defineNuxtConfig({
       xxl: 1536
     },
     dir: 'public',
-    staticFilename: '[name][ext]'
+    staticFilename: '[name][ext]',
+    provider: 'vercel',
+    vercel: {
+      baseURL: '/_vercel/image'
+    }
   },
   app: {
     head: {

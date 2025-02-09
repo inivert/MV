@@ -17,7 +17,6 @@
             fetchpriority="high"
             format="webp"
             quality="95"
-            provider="ipx"
           />
           MV Landscaping
         </NuxtLink>
@@ -132,7 +131,6 @@
                 loading="lazy"
                 format="webp"
                 quality="95"
-                provider="ipx"
               />
               <h3 class="text-lg font-semibold">
                 MV Landscaping
