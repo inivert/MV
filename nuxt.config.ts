@@ -67,13 +67,13 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'MV Landscaping - Professional Landscaping & Junk Removal Services' },
         { property: 'og:description', content: 'Expert landscaping and junk removal services in RI, MA & CT. Professional lawn care and property cleanup since 2005.' },
-        { property: 'og:url', content: 'https://mv-bay.vercel.app/' },
-        { property: 'og:image', content: 'https://mv-bay.vercel.app/images/hero-bg.jpg' },
+        { property: 'og:url', content: 'https://mv-landscaping.com/' },
+        { property: 'og:image', content: 'https://mv-landscaping.com/images/hero-bg.jpg' },
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'MV Landscaping - Professional Landscaping & Junk Removal' },
         { name: 'twitter:description', content: 'Expert landscaping and junk removal services in New England. Transform your outdoor space today.' },
-        { name: 'twitter:image', content: 'https://mv-bay.vercel.app/images/hero-bg.jpg' },
+        { name: 'twitter:image', content: 'https://mv-landscaping.com/images/hero-bg.jpg' },
         // Location
         { name: 'geo.region', content: 'US-RI,US-MA,US-CT' },
         // Additional SEO
@@ -85,7 +85,7 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap'
         },
-        { rel: 'canonical', href: 'https://mv-bay.vercel.app/' }
+        { rel: 'canonical', href: 'https://mv-landscaping.com/' }
       ]
     }
   },
@@ -97,7 +97,7 @@ export default defineNuxtConfig({
     // Public runtime config
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api/quote',
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://mv-bay.vercel.app/',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://mv-landscaping.com/',
       siteName: process.env.NUXT_PUBLIC_SITE_NAME || 'MV Landscaping'
     }
   },

@@ -90,7 +90,7 @@ const validateFormData = (data: FormData): string[] => {
       errors.push('Project details must be at least 20 characters long')
     }
     if (messageLength > 1000) {
-      errors.push('Project details cannot exceed 1000 characters')
+      errors.push('Project details cannot exceed 1000 characters, we can discuss your project over the phone.')
     }
     if (containsSpamContent(data.message)) {
       errors.push('Message contains prohibited content')
