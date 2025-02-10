@@ -5,14 +5,9 @@
     </Head>
     <NuxtLayout>
       <NuxtPage />
-      <Analytics />
     </NuxtLayout>
   </div>
 </template>
-
-<script setup>
-import { Analytics } from '@vercel/analytics/react'
-</script>
 
 <style>
 html {
