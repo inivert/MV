@@ -1,24 +1,35 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-gray-100">
+  <div 
+    v-motion
+    :initial="{ opacity: 0 }"
+    :enter="{ opacity: 1, transition: { duration: 2000, ease: 'easeInOut' } }"
+    class="flex flex-col min-h-screen bg-gray-100">
     <header class="fixed w-full top-0 z-50 bg-gray-100/95 backdrop-blur-sm shadow-md" role="banner">
       <nav class="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between" role="navigation" aria-label="Main navigation">
         <NuxtLink
           v-motion
           to="/"
           class="text-xl md:text-2xl font-bold text-primary-600 flex items-center gap-2"
-          :initial="{ opacity: 0, x: -50 }"
-          :enter="{ opacity: 1, x: 0 }"
+          :initial="{ opacity: 0 }"
+          :enter="{ opacity: 1, transition: { duration: 1800, delay: 400 } }"
         >
           <NuxtImg
+            v-motion
+            :initial="{ opacity: 0, y: -50 }"
+            :enter="{ opacity: 1, y: 0, transition: { duration: 2000, delay: 200, ease: 'easeOutQuint' } }"
             src="/images/logo.png"
             alt="MV Landscaping Logo"
-            class="h-8 md:h-10 w-auto"
+            class="h-8 md:h-10 w-auto transform-gpu"
             loading="eager"
             fetchpriority="high"
             format="webp"
             quality="95"
           />
-          MV Landscaping
+          <span v-motion
+            :initial="{ opacity: 0 }"
+            :enter="{ opacity: 1, transition: { duration: 1500, delay: 800 } }">
+            MV Landscaping
+          </span>
         </NuxtLink>
 
         <div class="hidden md:flex space-x-8 text-lg">
@@ -28,8 +39,8 @@
             v-motion
             :to="'/#' + item.toLowerCase().replace(' ', '-')"
             class="text-gray-700 hover:text-primary-600 transition-colors relative group py-2"
-            :initial="{ opacity: 0, y: -20 }"
-            :enter="{ opacity: 1, y: 0, transition: { delay: 100 * index } }"
+            :initial="{ opacity: 0 }"
+            :enter="{ opacity: 1, transition: { duration: 1500, delay: 1000 + (300 * index) } }"
           >
             {{ item }}
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
